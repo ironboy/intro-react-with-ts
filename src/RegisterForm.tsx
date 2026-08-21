@@ -46,7 +46,7 @@ export default function RegisterForm() {
     <Input label="Upprepa lösenord" name="repeatPassword"
       type="password" value={repeatPassword} onChange={change} />
     <Input label="Mer om dig" name="moreAboutMe" onChange={change}
-      type="text" value={moreAboutMe} />
+      type="text" value={moreAboutMe} optional />
     <button type="submit">Registrera dig</button>
   </form>;
 }

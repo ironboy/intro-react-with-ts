@@ -1,8 +1,11 @@
-label {
-  display: block;
-  margin-bottom: 10px;
+main {
+  max-width: 700px;
+  margin: 0 auto;
 
-  input {
-    display: block
+  article {
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(226, 221, 149);
   }
 }

@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "start-json-server": " npx json-server db.json"
+    "json-server": " npx json-server db.json"
   },
   "dependencies": {
     "json-server": "^1.0.0-beta.15",

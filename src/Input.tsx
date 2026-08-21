@@ -1,12 +1,4 @@
-interface InputProps {
-  label: string;
-  name: string;
-  value: string;
-  type: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  // ?: optional property doesn't have to exist
-  optional?: boolean;
-}
+import type InputProps from "./interfaces/InputProps";
 
 export default function Input(props: InputProps) {
   const { label, name, value, type, onChange, optional } = props;

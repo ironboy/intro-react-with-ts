@@ -1,17 +1,12 @@
-import type { BackendProduct, Product, Category, GroceryProduct } from './interfaces/ProductAndCategories';
+import type { BackendProduct, Product, Category } from './interfaces/ProductAndCategories';
 import { useState } from 'react';
 import useFetch from './utils/useFetch';
-
-/* narrows a Product to a GroceryProduct so we can read bestBefore */
-function isGroceryProduct(product: Product): product is GroceryProduct {
-  return 'bestBefore' in product;
-}
 
 export default function ProductList() {
 
   const [categories, loadingCategories] = useFetch<Category[]>('/api/categories');
   const [backendProducts, loadingProducts] = useFetch<BackendProduct[]>('/api/products');
-  const [products, setProducts] = useState<(Product | GroceryProduct)[] | null>(null);
+  const [products, setProducts] = useState<Product[] | null>(null);
 
   // while loading don't display anything
   if (loadingCategories || loadingProducts) { return null; }
@@ -20,7 +15,7 @@ export default function ProductList() {
   // delete categoryId and add category for each product
   if (!products) {
     const transformedProducts = backendProducts!.map(
-      ({ categoryId, bestBefore, ...rest }): Product | GroceryProduct => ({
+      ({ categoryId, bestBefore, ...rest }): Product => ({
         ...rest,
         category: categories!.find(category => category.id === categoryId)!,
         /* only grocery products have bestBefore, and it arrives as a string */
@@ -32,14 +27,14 @@ export default function ProductList() {
   }
 
   return <>
-    {products!.map((product) =>
-      <article key={product.id}>
-        <h3>{product.name}</h3>
-        <p>{product.description}</p>
-        <p>Pris: {product.price}</p>
-        <p>Category: {product.category.name}</p>
-        {isGroceryProduct(product) &&
-          <p>Bäst före: {product.bestBefore.toLocaleDateString('sv-SE')}</p>}
+    {products!.map(({ id, name, description, price, category, bestBefore }) =>
+      <article key={id}>
+        <h3>{name}</h3>
+        <p>{description}</p>
+        <p>Pris: {price}</p>
+        <p>Category: {category.name}</p>
+        {bestBefore &&
+          <p>Bäst före: {bestBefore.toLocaleDateString('sv-SE')}</p>}
       </article>
     )}
   </>;

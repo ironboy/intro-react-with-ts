@@ -14,16 +14,7 @@ export interface Product {
   description: string;
   price: number;
   category: Category;
-}
-
-/*
-  Inheritance:
-  GroceryProduct extends Product
-  (inherits all its properties)
-  and then we add one extra property
-*/
-export interface GroceryProduct extends Product {
-  bestBefore: Date;
+  bestBefore?: Date;
 }
 
 /* 
@@ -33,5 +24,5 @@ export interface GroceryProduct extends Product {
 export interface BackendProduct extends Omit<Product, 'category'> {
   categoryId: string;
   /* only present on grocery products, and a string since JSON has no dates */
-  bestBefore?: string;
+  bestBefore?: Date;
 }

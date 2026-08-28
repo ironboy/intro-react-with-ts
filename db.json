@@ -1,20 +1,38 @@
 {
   "$schema": "./node_modules/json-server/schema.json",
+  "categories": [
+    {
+      "name": "rubbery",
+      "description": "Rubbery and/or plastic products you can squeeze.",
+      "id": "zhCF6pX-L9g"
+    },
+    {
+      "name": "grocery",
+      "description": "Things you can eat or drink without dying.  ",
+      "id": "s7nQX9giYIc"
+    }
+  ],
   "products": [
     {
       "name": "Gummianka",
       "description": "Bra att rådfråga när man kodar.",
-      "price": 99
+      "price": 99,
+      "id": "SESP7uwJojM",
+      "categoryId": "zhCF6pX-L9g"
     },
     {
       "name": "Stressboll",
       "description": "Bra att klämma på när man kodar.",
-      "price": 57
+      "price": 57,
+      "id": "lqpvCCuOTpk",
+      "categoryId": "zhCF6pX-L9g"
     },
     {
       "name": "Jolt Cola",
       "description": "Bra att dricka litervis av när man kodar.",
-      "price": 15
+      "price": 15,
+      "id": "ddD8wTff_-0",
+      "categoryId": "s7nQX9giYIc"
     }
   ]
 }

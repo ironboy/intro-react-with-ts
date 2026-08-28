@@ -1,7 +1,8 @@
 import ProductList from "./ProductList";
+import { Outlet } from "react-router";
 
 export default function App() {
   return <main>
-    <ProductList />
+    <Outlet />
   </main>;
 }

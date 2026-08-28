@@ -14,6 +14,7 @@ export default class Product implements ProductInterface {
   category!: Category;
   bestBefore?: Date;
 
+  // See:  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
   #formatter = new Intl.NumberFormat("sv-SE", {
     style: "currency", currency: "SEK"
   });

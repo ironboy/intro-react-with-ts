@@ -15,6 +15,9 @@ export interface Product {
   price: number;
   category: Category;
   bestBefore?: Date;
+  priceIncVat: number;
+  priceIncVatFormatted: string;
+  priceExVatFormatted: string;
 }
 
 /* 

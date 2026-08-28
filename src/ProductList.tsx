@@ -1,12 +1,24 @@
-import type { Product } from './interfaces/ProductAndCategories';
+import type { Product, Category } from './interfaces/ProductAndCategories';
 import useFetch from './utils/useFetch';
 
 export default function ProductList() {
 
-  // which data type to expect
-  const [products, loading] = useFetch<Product[]>('/api/products');
+  const [categories, loadingCategories] = useFetch<Category[]>('/api/categories');
+  const [products, loadingProducts] = useFetch<Product[]>('/api/products');
 
-  if (loading) { return null; }
+  // while loading don't display anything
+  if (loadingCategories || loadingProducts) { return null; }
+
+  // transform categoryId to category for each product
+  if ((products![0] as any).categoryId) {
+    const productsWithCategories = products?.map((product) => {
+      product.category = categories?.find(
+        category => category.id === (product as any).categoryId) as Category;
+      delete (product as any).categoryId;
+      return product;
+    });
+    console.log(productsWithCategories);
+  }
 
   return <>
     {products!.map(({ id, name, description, price }) =>

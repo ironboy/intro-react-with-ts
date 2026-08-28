@@ -18,6 +18,7 @@ export interface Product {
   priceIncVat: number;
   priceIncVatFormatted: string;
   priceExVatFormatted: string;
+  bestBeforeFormatted: string;
 }
 
 /* 

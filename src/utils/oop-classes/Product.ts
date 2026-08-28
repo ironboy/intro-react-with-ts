@@ -15,8 +15,23 @@ export default class Product implements ProductInterface {
   bestBefore?: Date;
 
   // see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
-  #formatter = new Intl.NumberFormat("sv-SE", {
+  #priceFormatter = new Intl.NumberFormat("sv-SE", {
     style: "currency", currency: "SEK"
+  });
+
+  #dateFormatter = new Intl.DateTimeFormat("sv-SE", {
+    /*
+      dateStyle
+      depending on language but same typeo of verbosity
+      "full" — "Friday, August 28, 2026"
+      "long" — "August 28, 2026"
+      "medium" — "Aug 28, 2026"
+      "short" — "8/28/26"
+
+      You can also use the timeStyle property to display
+      time as well
+    */
+    dateStyle: "long"
   });
 
   constructor(settings: ProductInterface) {
@@ -32,11 +47,15 @@ export default class Product implements ProductInterface {
   }
 
   get priceIncVatFormatted() {
-    return this.#formatter.format(this.priceIncVat);
+    return this.#priceFormatter.format(this.priceIncVat);
   }
 
   get priceExVatFormatted() {
-    return this.#formatter.format(this.price);
+    return this.#priceFormatter.format(this.price);
+  }
+
+  get bestBeforeFormatted() {
+    return this.#dateFormatter.format(this.bestBefore);
   }
 
 }

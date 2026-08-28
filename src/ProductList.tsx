@@ -30,14 +30,14 @@ export default function ProductList() {
 
   return <>
     {products!.map(({ id, name, description, category, bestBefore,
-      priceIncVatFormatted, priceExVatFormatted }) =>
+      priceIncVatFormatted, priceExVatFormatted, bestBeforeFormatted }) =>
       <article key={id}>
         <h3>{name}</h3>
         <p>{description}</p>
         <p>Pris: {priceIncVatFormatted} inkl. moms (exkl. moms: {priceExVatFormatted})</p>
         <p>Category: {category.name}</p>
         {bestBefore &&
-          <p>Bäst före: {bestBefore.toLocaleDateString('sv-SE')}</p>}
+          <p>Bäst före: {bestBeforeFormatted}</p>}
       </article>
     )}
   </>;

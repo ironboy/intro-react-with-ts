@@ -1,4 +1,4 @@
-import type Product from './interfaces/Product';
+import type { Product } from './interfaces/ProductAndCategories';
 import useFetch from './utils/useFetch';
 
 export default function ProductList() {
